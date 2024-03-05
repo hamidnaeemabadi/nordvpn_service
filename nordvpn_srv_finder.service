@@ -1,0 +1,15 @@
+[Unit]
+Description=NordVPN best server finder
+
+[Service]
+Environment="log_file=/var/log/nordvpn/nordvpn_srv_finder.log"
+Environment="log_rotate_config=/etc/logrotate.d/nordvpn_srv_finder"
+ExecStart=/bin/bash /opt/nordvpn_srv_finder/find_nordvpn_best_server.sh
+ExecStop=/bin/bash -c '/bin/kill -TERM $MAINPID; logrotate -f $log_rotate_config'
+StandardOutput=file:/var/log/nordvpn/nordvpn_srv_finder.log
+StandardError=file:/var/log/nordvpn/nordvpn_srv_finder.log
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

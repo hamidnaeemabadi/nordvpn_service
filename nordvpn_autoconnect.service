@@ -1,0 +1,15 @@
+[Unit]
+Description=NordVPN Auto-connect on disconnection Service
+
+[Service]
+Environment="log_file=/var/log/nordvpn/nordvpn_autoconnect.log"
+Environment="log_rotate_config=/etc/logrotate.d/nordvpn_autoconnect"
+ExecStart=/bin/bash /opt/nordvpn_services/nordvpn_autoconnect_iface.sh
+ExecStop=/bin/bash -c '/bin/kill -TERM $MAINPID; logrotate -f $log_rotate_config'
+StandardOutput=file:/var/log/nordvpn/nordvpn_autoconnect.log
+StandardError=file:/var/log/nordvpn/nordvpn_autoconnect.log
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
