@@ -7,7 +7,7 @@
 ########################################################
 app_path=/opt/nordvpn_services/
 service_path=/lib/systemd/system/
-nordvpn_autoconnect_script=nordvpn_autoconnect_iface.sh
+nordvpn_autoconnect_script=nordvpn_autoconnect.sh
 nordvpn_autoconnect_service=nordvpn_autoconnect.service
 log_path=/var/log/nordvpn/
 
