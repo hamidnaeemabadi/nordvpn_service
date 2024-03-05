@@ -9,7 +9,7 @@
 speed_test_status=0
 
 # List of countries to try
-countries=("Germany" "Finland" "Canada" "United Kingdom" "France")
+countries=("Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Sweden" "Sweden" "Sweden" "Sweden" "United_Arab_Emirates" "United_Kingdom" "The_Americas" "The_Americas" "The_Americas" "United_States" "Germany" "Canada" "Japan" "Spain" "Netherlands" "Switzerland" "France" "Poland" "Singapore" "Hong_Kong" "Italy" "Turkey")
  
 # Define the speed threshold (Mbits/s)
 speed_threshold=100
