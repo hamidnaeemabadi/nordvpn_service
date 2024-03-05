@@ -64,11 +64,11 @@ sudo systemctl start nordvpn_autoconnect
 sudo systemctl status nordvpn_autoconnect
 ######################
 # Clean
-sudo rm -fv $service_path/$nordvpn_srv_finder_service 
-sudo rm -fv $service_path/$nordvpn_autoconnect_service 
-sudo rm -fv /etc/logrotate.d/nordvpn_srv_finder
-sudo systemctl stop nordvpn_srv_finder
-sudo systemctl stop nordvpn_autoconnect
-sudo systemctl disable nordvpn_srv_finder
-sudo systemctl disable nordvpn_autoconnect
-sudo systemctl daemon-reload
+# sudo rm -fv $service_path/$nordvpn_srv_finder_service 
+# sudo rm -fv $service_path/$nordvpn_autoconnect_service 
+# sudo rm -fv /etc/logrotate.d/nordvpn_srv_finder
+# sudo systemctl stop nordvpn_srv_finder
+# sudo systemctl stop nordvpn_autoconnect
+# sudo systemctl disable nordvpn_srv_finder
+# sudo systemctl disable nordvpn_autoconnect
+# sudo systemctl daemon-reload
