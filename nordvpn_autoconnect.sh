@@ -25,7 +25,7 @@ function dis_nord () {
 
 function check_ip {
   server_country=""
-  timeout 5s bash -c "ping -c 3 1.1.1.1 > /dev/null 2>&1"
+  timeout 5s bash -c "ping -c 5 1.1.1.1 > /dev/null 2>&1"
   function_status=$?
   if [[ $function_status != "0" ]] ; then
     dis_nord
