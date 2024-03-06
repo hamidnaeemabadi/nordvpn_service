@@ -20,11 +20,12 @@ Green='\033[0;32m'        # Green
 
 function dis_nord () {
     echo -e "$Red$(date) - Internet is not connected, disconnecting nord$ENDCOLOR"
+    nordvpn disconnect
 }
 
 function check_ip {
   server_country=""
-  timeout 3s bash -c "ping -c 3 1.1.1.1 > /dev/null 2>&1"
+  timeout 5s bash -c "ping -c 3 1.1.1.1 > /dev/null 2>&1"
   function_status=$?
   if [[ $function_status != "0" ]] ; then
     dis_nord
