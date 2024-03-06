@@ -15,11 +15,11 @@ service_check_interval=5
 ENDCOLOR="\e[0m"
 Red='\033[0;31m'          # Red
 Yellow='\033[0;33m'       # Yellow
-Blue='\033[0;34m'         # Blue
+Green='\033[0;32m'        # Green
 #############################
 
 function dis_nord () {
-    echo "Internet is not connected, disconnecting nord"
+    echo -e "$Red$(date) - Internet is not connected, disconnecting nord$ENDCOLOR"
 }
 
 function check_ip {
@@ -29,7 +29,6 @@ function check_ip {
   if [[ $function_status != "0" ]] ; then
     dis_nord
   else
-    echo "Internet is connected."
     server_country=$(curl -s http://ip-api.com/line/"$(curl -s icanhazip.com)" | sed -n '2p')
   fi
 }
@@ -40,17 +39,17 @@ do
   # Call the function
   check_ip
   if [ "$server_country" == "Iran" ]; then
-    echo -e "$Blue NordVPN$ENDCOLOR is $Red disconnected$ENDCOLOR, The current ip location is: $Red$server_country$ENDCOLOR"
-    echo -e "$Yellow$(date) - Trying to reconnect...$ENDCOLOR"
+    echo -e "$Red$(date) - NordVPN is disconnected, The current ip location is: $Red$server_country$ENDCOLOR"
+    echo -e "$Yellow$(date) - Trying to reconnect ...$ENDCOLOR"
     for country in "${countries[@]}"
       do
-        echo -e "$Blue NordVPN$ENDCOLOR is $Red disconnected$ENDCOLOR."
+        echo -e "$Red$(date) - NordVPN is disconnected$ENDCOLOR."
         echo -e "$Yellow$(date) - Trying to reconnect...$ENDCOLOR"
         nordvpn connect $country
         # Check if the connection was successful
         check_ip
         if [ "$server_country" != "Iran" ]; then
-          echo -e "$Blue NordVPN is Connected to $Green$server_country.$ENDCOLOR"
+          echo -e "$Green$(date) - NordVPN is Connected to $server_country.$ENDCOLOR"
         break
         fi
       done
