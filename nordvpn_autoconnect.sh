@@ -6,7 +6,7 @@
 # Purpose: [NordVPN Auto-connect on disconnection]
 ########################################################
 # List of countries to try
-countries=("Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Obfuscated_Servers" "Sweden" "Sweden" "Sweden" "Sweden" "United_Arab_Emirates" "United_Kingdom" "The_Americas" "The_Americas" "The_Americas" "United_States" "Germany" "Canada" "Japan" "Spain" "Netherlands" "Switzerland" "France" "Poland" "Singapore" "Hong_Kong" "Italy" "Turkey")
+countries=("Obfuscated_Servers" "Obfuscated_Servers" "Sweden" "Sweden" "Sweden" "Sweden" "United_Arab_Emirates" "United_Kingdom" "The_Americas" "The_Americas" "The_Americas" "United_States" "Germany" "Canada" "Japan" "Spain" "Netherlands" "Switzerland" "France" "Poland" "Singapore" "Hong_Kong" "Italy" "Turkey")
 
 # Service check_interval (seconds), you need to restart the service after change this variable (sudo systemctl restart nordvpn_autoconnect)
 service_check_interval=5
@@ -20,12 +20,14 @@ Green='\033[0;32m'        # Green
 
 function dis_nord () {
     echo -e "$Red$(date) - Internet is not connected, disconnecting nord$ENDCOLOR"
-    nordvpn disconnect
+    timeout 10s nordvpn disconnect
+    sudo ifconfig nordtun down
+    sudo systemctl restart -f nordvpnd 
 }
 
 function check_ip {
   server_country=""
-  timeout 5s bash -c "ping -c 5 1.1.1.1 > /dev/null 2>&1"
+  timeout 8s bash -c "ping -c 5 1.1.1.1 > /dev/null 2>&1"
   function_status=$?
   if [[ $function_status != "0" ]] ; then
     dis_nord
